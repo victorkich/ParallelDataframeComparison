@@ -53,7 +53,7 @@ def main():
     ax.legend(loc="lower left", mode="expand", ncol=3, prop={'size': 20})
     ax.set_xlabel('CSV size', fontsize=20)
     ax.set_ylabel('Time (s)', fontsize=20)
-    ax.set_title('Read CSV Spended Time - Pilot study (n=10)', fontsize=24)
+    ax.set_title('Read CSV Spent Time - Pilot study (n=10)', fontsize=24)
     ax.set_ylim([-1, 7])
     ax.grid()
     fig.set_dpi(100)
@@ -131,6 +131,8 @@ def main():
         modin_confidence_low.append(confidence_lower)
         modin_confidence_high.append(confidence_higher)
         modin_mean.append(np.mean(data_modin_read[i][:84]))
+
+        print("Modin is {}x times faster".format(np.mean(np.mean(data_pandas_read[i][:84]) / data_modin_read[i][:84])))
         
     ax.plot(["11.8kb", "60.6mb", "209.4mb"], pandas_mean, linestyle='-', linewidth=2, label="Sequential", c="firebrick")
     ax.fill_between(["11.8kb", "60.6mb", "209.4mb"], pandas_confidence_low, pandas_confidence_high, alpha=0.1, facecolor="firebrick")
@@ -139,7 +141,7 @@ def main():
     ax.legend(loc="lower left", mode="expand", ncol=3, prop={'size': 20})
     ax.set_xlabel('CSV size', fontsize=20)
     ax.set_ylabel('Time (s)', fontsize=20)
-    ax.set_title('Read CSV - Spended Time', fontsize=24)
+    ax.set_title('Read CSV - Spent Time', fontsize=24)
     ax.set_ylim([-1, 7])
     ax.grid()
     fig.set_dpi(100)
@@ -159,8 +161,8 @@ def main():
     for patch, color in zip(box_plot['boxes'], colors):
         patch.set_facecolor(color)
 
-    plt.title('Box plot of Spended Time - 11.8kb')
-    plt.ylabel('Read CSV - Spended Time')
+    plt.title('Box plot of Spent Time - 11.8kb')
+    plt.ylabel('Read CSV - Spent Time')
     plt.xlabel('Computing Type')
     plt.savefig("read_csv_boxplot_1.pdf", format='pdf', bbox_inches="tight")
     plt.show()
@@ -206,7 +208,7 @@ def main():
     # Add legend
     plt.legend(loc='upper right')
 
-    plt.title('Read CSV - Spended Time Distribution - 11.8kb')
+    plt.title('Read CSV - Spent Time Distribution - 11.8kb')
 
     # Label the axes
     plt.xlabel('Time (s)')
@@ -258,8 +260,8 @@ def main():
     for patch, color in zip(box_plot['boxes'], colors):
         patch.set_facecolor(color)
 
-    plt.title('Box plot of Spended Time - 60.6mb')
-    plt.ylabel('Read CSV - Spended Time')
+    plt.title('Box plot of Spent Time - 60.6mb')
+    plt.ylabel('Read CSV - Spent Time')
     plt.xlabel('Computing Type')
     plt.savefig("read_csv_boxplot_2.pdf", format='pdf', bbox_inches="tight")
     plt.show()
@@ -305,7 +307,7 @@ def main():
     # Add legend
     plt.legend(loc='upper right')
 
-    plt.title('Read CSV - Spended Time Distribution - 60.6mb')
+    plt.title('Read CSV - Spent Time Distribution - 60.6mb')
 
     # Label the axes
     plt.xlabel('Time (s)')
@@ -357,8 +359,8 @@ def main():
     for patch, color in zip(box_plot['boxes'], colors):
         patch.set_facecolor(color)
 
-    plt.title('Box plot of Spended Time - 209.4mb')
-    plt.ylabel('Read CSV - Spended Time')
+    plt.title('Box plot of Spent Time - 209.4mb')
+    plt.ylabel('Read CSV - Spent Time')
     plt.xlabel('Computing Type')
     plt.savefig("read_csv_boxplot_3.pdf", format='pdf', bbox_inches="tight")
     plt.show()
@@ -404,7 +406,7 @@ def main():
     # Add legend
     plt.legend(loc='upper right')
 
-    plt.title('Read CSV - Spended Time Distribution - 209.4mb')
+    plt.title('Read CSV - Spent Time Distribution - 209.4mb')
 
     # Label the axes
     plt.xlabel('Time (s)')
@@ -491,7 +493,7 @@ def main():
     ax.legend(loc="lower left", mode="expand", ncol=3, prop={'size': 20})
     ax.set_xlabel('CSV size', fontsize=20)
     ax.set_ylabel('Time (s)', fontsize=20)
-    ax.set_title('Concatenation Spended Time - Pilot study (n=10)', fontsize=24)
+    ax.set_title('Concatenation Spent Time - Pilot study (n=10)', fontsize=24)
     ax.set_ylim([-0.4, 1.8])
     ax.grid()
     fig.set_dpi(100)
@@ -569,6 +571,9 @@ def main():
         modin_confidence_low.append(confidence_lower)
         modin_confidence_high.append(confidence_higher)
         modin_mean.append(np.mean(data_modin_read[i][:12]))
+
+        print("Modin is {}x times faster".format(np.mean(np.mean(data_pandas_read[i][:12]) / data_modin_read[i][:12])))
+
         
     ax.plot(["11.8kb", "60.6mb", "209.4mb"], pandas_mean, linestyle='-', linewidth=2, label="Sequential", c="firebrick")
     ax.fill_between(["11.8kb", "60.6mb", "209.4mb"], pandas_confidence_low, pandas_confidence_high, alpha=0.1, facecolor="firebrick")
@@ -577,7 +582,7 @@ def main():
     ax.legend(loc="lower left", mode="expand", ncol=3, prop={'size': 20})
     ax.set_xlabel('CSV size', fontsize=20)
     ax.set_ylabel('Time (s)', fontsize=20)
-    ax.set_title('Concatenation - Spended Time', fontsize=24)
+    ax.set_title('Concatenation - Spent Time', fontsize=24)
     ax.set_ylim([-0.4, 1.8])
     ax.grid()
     fig.set_dpi(100)
@@ -597,8 +602,8 @@ def main():
     for patch, color in zip(box_plot['boxes'], colors):
         patch.set_facecolor(color)
 
-    plt.title('Box plot of Spended Time - 209.4mb')
-    plt.ylabel('Concatenation - Spended Time')
+    plt.title('Box plot of Spent Time - 209.4mb')
+    plt.ylabel('Concatenation - Spent Time')
     plt.xlabel('Computing Type')
     plt.savefig("concatenation_boxplot_3.pdf", format='pdf', bbox_inches="tight")
     plt.show()
@@ -644,7 +649,7 @@ def main():
     # Add legend
     plt.legend(loc='upper right')
 
-    plt.title('Concatenation - Spended Time Distribution - 209.4mb')
+    plt.title('Concatenation - Spent Time Distribution - 209.4mb')
 
     # Label the axes
     plt.xlabel('Time (s)')
@@ -731,7 +736,7 @@ def main():
     ax.legend(loc="lower left", mode="expand", ncol=3, prop={'size': 20})
     ax.set_xlabel('CSV size', fontsize=20)
     ax.set_ylabel('Time (s)', fontsize=20)
-    ax.set_title('Dropna Spended Time - Pilot study (n=10)', fontsize=24)
+    ax.set_title('Dropna Spent Time - Pilot study (n=10)', fontsize=24)
     ax.set_ylim([-1.1, 9.5])
     ax.grid()
     fig.set_dpi(100)
@@ -809,6 +814,8 @@ def main():
         modin_confidence_low.append(confidence_lower)
         modin_confidence_high.append(confidence_higher)
         modin_mean.append(np.mean(data_modin_read[i][:32]))
+
+        print("Modin is {}x times faster".format(np.mean(np.mean(data_pandas_read[i][:32]) / data_modin_read[i][:32])))
         
     ax.plot(["11.8kb", "60.6mb", "209.4mb"], pandas_mean, linestyle='-', linewidth=2, label="Sequential", c="firebrick")
     ax.fill_between(["11.8kb", "60.6mb", "209.4mb"], pandas_confidence_low, pandas_confidence_high, alpha=0.1, facecolor="firebrick")
@@ -817,7 +824,7 @@ def main():
     ax.legend(loc="lower left", mode="expand", ncol=3, prop={'size': 20})
     ax.set_xlabel('CSV size', fontsize=20)
     ax.set_ylabel('Time (s)', fontsize=20)
-    ax.set_title('Dropna - Spended Time', fontsize=24)
+    ax.set_title('Dropna - Spent Time', fontsize=24)
     ax.set_ylim([-1.1, 9.5])
     ax.grid()
     fig.set_dpi(100)
@@ -837,8 +844,8 @@ def main():
     for patch, color in zip(box_plot['boxes'], colors):
         patch.set_facecolor(color)
 
-    plt.title('Box plot of Spended Time - 11.8kb')
-    plt.ylabel('Dropna - Spended Time')
+    plt.title('Box plot of Spent Time - 11.8kb')
+    plt.ylabel('Dropna - Spent Time')
     plt.xlabel('Computing Type')
     plt.savefig("dropna_boxplot_1.pdf", format='pdf', bbox_inches="tight")
     plt.show()
@@ -884,7 +891,7 @@ def main():
     # Add legend
     plt.legend(loc='upper right')
 
-    plt.title('Dropna - Spended Time Distribution - 11.8kb')
+    plt.title('Dropna - Spent Time Distribution - 11.8kb')
 
     # Label the axes
     plt.xlabel('Time (s)')
@@ -936,8 +943,8 @@ def main():
     for patch, color in zip(box_plot['boxes'], colors):
         patch.set_facecolor(color)
 
-    plt.title('Box plot of Spended Time - 60.6mb')
-    plt.ylabel('Dropna - Spended Time')
+    plt.title('Box plot of Spent Time - 60.6mb')
+    plt.ylabel('Dropna - Spent Time')
     plt.xlabel('Computing Type')
     plt.savefig("dropna_boxplot_2.pdf", format='pdf', bbox_inches="tight")
     plt.show()
@@ -983,7 +990,7 @@ def main():
     # Add legend
     plt.legend(loc='upper right')
 
-    plt.title('Dropna - Spended Time Distribution - 60.6mb')
+    plt.title('Dropna - Spent Time Distribution - 60.6mb')
 
     # Label the axes
     plt.xlabel('Time (s)')
@@ -1026,8 +1033,8 @@ def main():
 
     print("CSV size: 209.4mb")
 
-    sample_1 = data_pandas_read[2][:84]
-    sample_2 = data_modin_read[2][:84]
+    sample_1 = data_pandas_read[2][:32]
+    sample_2 = data_modin_read[2][:32]
 
     box_plot = plt.boxplot([sample_1, sample_2], vert=True, patch_artist=True, labels=['Sequential', 'Parallel'])
 
@@ -1035,8 +1042,8 @@ def main():
     for patch, color in zip(box_plot['boxes'], colors):
         patch.set_facecolor(color)
 
-    plt.title('Box plot of Spended Time - 209.4mb')
-    plt.ylabel('Dropna - Spended Time')
+    plt.title('Box plot of Spent Time - 209.4mb')
+    plt.ylabel('Dropna - Spent Time')
     plt.xlabel('Computing Type')
     plt.savefig("dropna_boxplot_3.pdf", format='pdf', bbox_inches="tight")
     plt.show()
@@ -1082,7 +1089,7 @@ def main():
     # Add legend
     plt.legend(loc='upper right')
 
-    plt.title('Dropna - Spended Time Distribution - 209.4mb')
+    plt.title('Dropna - Spent Time Distribution - 209.4mb')
 
     # Label the axes
     plt.xlabel('Time (s)')
